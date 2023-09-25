@@ -1,0 +1,36 @@
+name: Deploy Infrastructure using Terraform
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Infrastructure
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::976809625379:role/gha_oidc_role_github-actions-oidc
+          aws-region: us-east-1
+
+      - name: Terraform init
+        run: |
+          terraform init
+
+      - name: Terraform apply
+        run: |
+          terraform apply -auto-approve
