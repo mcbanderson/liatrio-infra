@@ -33,14 +33,14 @@ cluster_encryption_config_enabled = true
 kubernetes_version = "1.26"
 
 map_additional_iam_users = [{
-  groups = [ "system:masters" ]
-  userarn = "arn:aws:iam::976809625379:user/admin"
+  groups   = ["system:masters"]
+  userarn  = "arn:aws:iam::976809625379:user/admin"
   username = "admin"
-},
-{
-  groups = [ "system:masters" ]
-  userarn = "arn:aws:iam::976809625379:user/root"
-  username = "root"
+  },
+  {
+    groups   = ["system:masters"]
+    userarn  = "arn:aws:iam::976809625379:user/root"
+    username = "root"
 }]
 
 addons = [
