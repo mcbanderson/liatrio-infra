@@ -39,7 +39,7 @@ map_additional_iam_users = [{
   },
   {
     groups   = ["system:masters"]
-    userarn  = "arn:aws:iam::976809625379:user/root"
+    userarn  = "arn:aws:iam::976809625379:root"
     username = "root"
 }]
 
