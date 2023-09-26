@@ -32,6 +32,17 @@ cluster_encryption_config_enabled = true
 # When updating the Kubernetes version, also update the API and client-go version in test/src/go.mod
 kubernetes_version = "1.26"
 
+map_additional_iam_users = [{
+  groups   = ["system:masters"]
+  userarn  = "arn:aws:iam::976809625379:user/admin"
+  username = "admin"
+  },
+  {
+    groups   = ["system:masters"]
+    userarn  = "arn:aws:iam::976809625379:user/root"
+    username = "root"
+}]
+
 addons = [
   // https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html#vpc-cni-latest-available-version
   {
